@@ -63,7 +63,7 @@ public class FindFirstSubstring {
     //   with hash values     012
     //    then its hash would be 3^2 * 0 + 3^1 * 1 + 2 = 0 + 3 + 2
     //
-    //  polynomial equation for the string
+    //  polynomial equation for the string hashCode
     //   SUM i..|s| (a[i] ^ (base - i))
     //
     // to calculate the next one we would need to
