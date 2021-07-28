@@ -1,8 +1,7 @@
-package stacksnqueues;
+package stacks;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 
 public class SearchPostingsList {
