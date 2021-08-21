@@ -64,9 +64,49 @@ public class GrayCode {
         return new ArrayList<>(q);
     }
 
+    public static List<Integer> grayCode(int n) {
+        if (n == 0) {
+            return new ArrayList<>(Arrays.asList(0));
+        }
+        List<Integer> codes = grayCode(n - 1);
+        int leadingBit = 1 << (n - 1);
+        for (int i = codes.size() - 1; i >= 0; i--) {
+            codes.add(leadingBit | codes.get(i));
+        }
+        return codes;
+    }
+
+    // test:
+    //   0
+    //   0 1
+    //   0 1 11 10
+    //   0 1 11 10 101 111 101 100
+    // Pseudocode:
+    //  start at 0
+    //  add(0)
+    //  while (i++ <= n)
+    //    for j = len(res); j >= 0; j--
+    //      add(leadingBit | res[j])
+    //
+    public static List<Integer> grayCodeIter(int n)  {
+        int i = 0;
+        List<Integer> result = new ArrayList<>();
+        result.add(0);
+        while (i++ < n) {
+            int leadingBit = 1 << (i - 1);
+            for (int j = result.size() - 1; j >= 0; j--) {
+                result.add(leadingBit | result.get(j));
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         System.out.println(gen(3));
         System.out.println(genBinary(3));
+        grayCode(3).stream().map(Integer::toBinaryString).forEach(System.out::println);
+        System.out.println(grayCode(3));
+        System.out.println(grayCodeIter(3));
     }
 
 }
